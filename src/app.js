@@ -14,22 +14,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Create the Index View File
 
 // Read and store accounts.json data
-const accountsData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), { encoding: 'utf8' }, (err, data) => {
+const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), { encoding: 'utf8' }, (err, data) => {
     if(err) console.log(err);
     console.log('accounts.json was succesfully read');
 });
-const accounts = JSON.parse(accountsData);
+const accounts = JSON.parse(accountData);
 
 // Read and store users.json data
-const usersData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), { encoding: 'utf8' }, (err, data) => {
+const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), { encoding: 'utf8' }, (err, data) => {
     if(err) console.log(err);
     console.log('users.json was succesfully read');
 });
-const users = JSON.parse(usersData);
+const users = JSON.parse(userData);
 
 // Create the Index Route
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Accounts Summary', accounts: accounts });
+    res.render('index', { title: 'Account Summary', accounts: accounts });
 });
 
 // Create the Savings Account Route
@@ -49,7 +49,7 @@ app.get('/credit', (req, res) => {
 
 // Create the Credit Account Route
 app.get('/profile', (req, res) => {
-    res.render('profile',  { user: users[0] })
+    res.render('account',  { user: users[0] })
 });
 
 app.listen(3000, (err) => {
