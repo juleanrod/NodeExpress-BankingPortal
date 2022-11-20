@@ -44,10 +44,10 @@ app.get('/checking', (req, res) => {
 
 // Create the Credit Account Route
 app.get('/credit', (req, res) => {
-    res.render('credit',  { account: accounts.credit })
+    res.render('account',  { account: accounts.credit })
 });
 
-// Create the Credit Account Route
+// Create the Profile Route
 app.get('/profile', (req, res) => {
     res.render('account',  { user: users[0] })
 });
