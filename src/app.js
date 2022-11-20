@@ -5,14 +5,13 @@ const express = require('express');
 const app = express();
 
 //Configure the View Directory and View Engine
-app.set(path.join(__dirname, 'src', 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Configure the Static Directory
-app.set(path.join(__dirname, 'src', 'public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Create the Index View File
-
 
 // Create the Index Route
 app.get('/', (req, res) => {
