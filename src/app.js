@@ -14,18 +14,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Create the Index View File
 
 // Read and store accounts.json data
-const accounts = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), { encoding: 'utf8' }, (err, data) => {
+const accountsData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), { encoding: 'utf8' }, (err, data) => {
     if(err) console.log(err);
     console.log('accounts.json was succesfully read');
-    return JSON.parse(data);
 });
+const accounts = JSON.parse(accountsData);
 
 // Read and store users.json data
-const users = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), { encoding: 'utf8' }, (err, data) => {
+const usersData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), { encoding: 'utf8' }, (err, data) => {
     if(err) console.log(err);
     console.log('users.json was succesfully read');
-    return JSON.parse(data);
 });
+const users = JSON.parse(usersData);
 
 // Create the Index Route
 app.get('/', (req, res) => {
