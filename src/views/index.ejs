@@ -4,7 +4,9 @@
     <h1><%= title %></h1>
     <a href='/profile'>Profile</a>
   </div>
-
+  <%- account.savings %>
+  <%- account.checking %>
+  <%- account.credit %>
   <br><a href='/transfer'>Transfer</a>
 
 <%- include('footer') %>

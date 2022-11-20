@@ -1,0 +1,12 @@
+@profile-ejs-create-view
+<%- include('header') %>
+
+<h1>Profile</h1>
+<div>
+    <%= for(let key in user) { %>
+        <p><%=user[key]%></p>
+    <%=}%>
+</div>
+<br><a href='/'>Back to Account Summary</a>
+
+<%- include('footer') %>
