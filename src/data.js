@@ -12,7 +12,7 @@ const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), { e
     if(err) console.log(err);
     console.log('users.json was succesfully read');
 });
-const users = JSON.parse(accountData);
+const users = JSON.parse(userData);
 
 const writeJSON = () => {
     let accountsJSON = JSON.stringify(accounts, null, 4)
