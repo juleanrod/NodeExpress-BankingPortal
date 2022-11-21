@@ -28,4 +28,4 @@ router.post('/transfer', (req, res) => {
     res.render('transfer', {message: 'Transfer Completed'});
 });
 
-module.export = router;
+module.exports = router;
