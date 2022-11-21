@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const accounts = require('../data');
+const { accounts } = require('../data');
 
 // Create the Savings Account Route
 router.get('/savings', (req, res) => {
@@ -9,7 +9,7 @@ router.get('/savings', (req, res) => {
 
 // Create the Checking Account Route
 router.get('/checking', (req, res) => {
-    res.render('checking',  { account: accounts.checking });
+    res.render('account',  { account: accounts.checking });
 });
 
 // Create the Credit Account Route

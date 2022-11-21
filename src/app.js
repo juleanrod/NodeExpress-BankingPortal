@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 // Create the Profile Route
 app.get('/profile', (req, res) => {
-    res.render('account',  { user: users[0] });
+    res.render('profile',  { user: users[0] });
 });
 
 app.use('/services', servicesRoutes);

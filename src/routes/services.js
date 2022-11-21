@@ -1,6 +1,6 @@
 const express = require('express');
 const router = require('express').Router();
-const { accounts, writeJSON } = require('../data');
+const { users, accounts, writeJSON } = require('../data');
 
 // Create the Transfer GET route
 router.get('/transfer', (req, res) => {
