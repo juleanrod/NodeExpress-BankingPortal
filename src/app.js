@@ -15,19 +15,18 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-//=============GET=====================
 // Create the Index Route
 app.get('/', (req, res) => {
     res.render('index', { title: 'Account Summary', accounts: accounts });
 });
-
 
 // Create the Profile Route
 app.get('/profile', (req, res) => {
     res.render('account',  { user: users[0] });
 });
 
-
+app.use('/services', servicesRoutes);
+app.use('/account', accountRoutes);
 
 app.listen(3000, (err) => {
     if(err) console.log('Error in the server setup');
