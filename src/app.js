@@ -65,42 +65,19 @@ app.get('/payment', (req, res) => {
 //=============POST=====================
 
 app.post('/payment', (req, res) => {
-    const amount = parseInt(req.body.amount);
-    const balance = parseInt(accounts.credit.balance);
-    accounts.credit.balance = (balance - amount).toString();
-    
-    const credit_available = parseInt(accounts.credit.available);
-    accounts.credit.available = (amount + credit_available).toString();
-
-    const accountsJSON = JSON.stringify(accounts);
-
-    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON,'utf8');
-    
-    res.render('payment', { message: 'Payment Successful', account: accounts.credit });
+accounts.credit.balance -= req.body.amount;
+    accounts.credit.available += parseInt(req.body.amount);
+    let accountsJSON = JSON.stringify(accounts, null, 4)
+    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, 'utf8');
+    res.render('payment', {message: 'Payment Successful', account: accounts.credit});
 });
 
 app.post('/transfer', (req, res) => {
-    const from = req.body.from;
-    const to = req.body.to;
-    const amount = parseInt(req.body.amount);
-
-    ((accs, type, amount) => {
-        const currentBalance = parseInt(accounts[type].balance);
-        accounts[type].prev_balance = currentBalance.toString();
-        accounts[type].balance = (currentBalance-amount).toString();
-    })(accounts, from, amount);
-    ((accs, type, amount) => {
-        const currentBalance = parseInt(accounts[type].balance);
-        accounts[type].prev_balance = currentBalance.toString();
-        accounts[type].balance = (currentBalance+amount).toString();
-    })(accounts, to, amount);
-
-    const accountsJSON = JSON.stringify(accounts);
-
-    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON,'utf8');
-
-    res.render('transfer', { message: 'Transfer Completed' });
-
+    accounts[req.body.from].balance -= req.body.amount;
+    accounts[req.body.to].balance += parseInt(req.body.amount, 10);
+    let accountsJSON = JSON.stringify(accounts, null, 4)
+    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, 'utf8');
+    res.render('transfer', {message: 'Transfer Completed'});
 });
 
 
